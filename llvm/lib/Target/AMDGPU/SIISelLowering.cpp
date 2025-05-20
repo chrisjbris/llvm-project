@@ -40,6 +40,7 @@
 #include "llvm/IR/IntrinsicsR600.h"
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/Support/CommandLine.h"
+
 #include "llvm/Support/KnownBits.h"
 #include "llvm/Support/ModRef.h"
 #include "llvm/Transforms/Utils/LowerAtomic.h"
@@ -429,6 +430,14 @@ SITargetLowering::SITargetLowering(const TargetMachine &TM,
     // subregister extracts.
     setOperationAction(ISD::VECTOR_SHUFFLE, {MVT::v2i32, MVT::v2f32}, Legal);
   }
+
+  setOperationAction({ISD::AND, ISD::OR, ISD::XOR}, MVT::v2i32, Legal);
+  // Prevent SELECT from being implemented with the above bitwise ops and
+  // instead use cndmask.
+  setOperationAction(ISD::SELECT, MVT::v2i32, Custom);
+  // Enable MatchRotate to produce ISD::ROTR, which is later transformed to
+  // alignbit.
+  setOperationAction(ISD::ROTR, MVT::v2i32, Legal);
 
   setOperationAction(ISD::BUILD_VECTOR, {MVT::v4f16, MVT::v4i16, MVT::v4bf16},
                      Custom);
@@ -835,6 +844,7 @@ SITargetLowering::SITargetLowering(const TargetMachine &TM,
     AddPromotedToType(ISD::SELECT, MVT::v2f16, MVT::i32);
   } else {
     // Legalization hack.
+    // Hmm.
     setOperationAction(ISD::SELECT, {MVT::v2i16, MVT::v2f16}, Custom);
 
     setOperationAction({ISD::FNEG, ISD::FABS}, MVT::v2f16, Custom);
@@ -1984,6 +1994,13 @@ bool SITargetLowering::shouldConvertConstantLoadToIntImm(const APInt &Imm,
                                                          Type *Ty) const {
   // FIXME: Could be smarter if called for vector constants.
   return true;
+}
+
+bool SITargetLowering::shouldFoldSelectWithIdentityConstant(unsigned BinOpcode,
+                                                            EVT VT) const {
+  return (BinOpcode == ISD::AND || BinOpcode == ISD::OR ||
+          BinOpcode == ISD::XOR) &&
+         VT.getScalarType() == MVT::i64;
 }
 
 bool SITargetLowering::isExtractSubvectorCheap(EVT ResVT, EVT SrcVT,
@@ -12872,6 +12889,51 @@ SDValue SITargetLowering::performOrCombine(SDNode *N,
     }
   }
 
+  // Detect identity v2i32 OR and replace with identity source node.
+  // Specifically an Or that has operands constructed from the same source node
+  // via extract_vector_elt and build_vector.
+  if (VT == MVT::v2i32) {
+    if (LHS->getOpcode() == ISD::BUILD_VECTOR &&
+        RHS->getOpcode() == ISD::BUILD_VECTOR) {
+      // DAG.canonicalizeCommutativeBinop(ISD::OR, RHS, LHS);
+      SDValue BVLHS = LHS->getOperand(0);
+      SDValue CLHS = LHS->getOperand(1);
+      SDValue CRHS = RHS->getOperand(0);
+      SDValue BVRHS = RHS->getOperand(1);
+      LLVM_DEBUG(dbgs() << "### Performing v2i32 SIISelLowering "
+                           "DAGCombine::CombineOR\n";);
+
+      auto *LC = dyn_cast<ConstantSDNode>(LHS->getOperand(1));
+      auto *RC = dyn_cast<ConstantSDNode>(RHS->getOperand(0));
+
+      if (LC && RC) {
+
+        // Test for and normalise build vectors.
+        if (LHS->getOpcode() == ISD::BUILD_VECTOR &&
+            RHS->getOpcode() == ISD::BUILD_VECTOR &&
+            // Check cast to constantnode here
+            LHS->getConstantOperandVal(1) == 0 &&
+            RHS->getConstantOperandVal(0) == 0) {
+
+          // Get the extract_vector_element operands.
+          SDValue LEVE = LHS->getOperand(0);
+          SDValue REVE = RHS->getOperand(1);
+
+          if (LEVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT &&
+              REVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT) {
+            // Check that the the elements from the same vector are extracted.
+            if (LEVE->getOperand(0) == REVE->getOperand(0) &&
+                LEVE->getOperand(1) != REVE->getOperand(1)) {
+              LLVM_DEBUG(dbgs() << "### Found identity OR, folding...\n";);
+              SDValue IdentitySrc = LEVE.getOperand(0);
+              return IdentitySrc;
+            }
+          }
+        }
+      }
+    }
+  }
+
   if (VT != MVT::i64 || DCI.isBeforeLegalizeOps())
     return SDValue();
 
@@ -12916,13 +12978,43 @@ SDValue SITargetLowering::performXorCombine(SDNode *N,
   if (SDValue RV = reassociateScalarOps(N, DCI.DAG))
     return RV;
 
+  SelectionDAG &DAG = DCI.DAG;
+  EVT VT = N->getValueType(0);
   SDValue LHS = N->getOperand(0);
   SDValue RHS = N->getOperand(1);
 
-  const ConstantSDNode *CRHS = dyn_cast<ConstantSDNode>(RHS);
-  SelectionDAG &DAG = DCI.DAG;
+  if (VT == MVT::v2i32 && LHS.getNumOperands() > 1) {
 
-  EVT VT = N->getValueType(0);
+    const ConstantSDNode *CRHS_0 = dyn_cast<ConstantSDNode>(RHS.getOperand(0));
+    const ConstantSDNode *CRHS_1 = dyn_cast<ConstantSDNode>(RHS.getOperand(1));
+    SDValue LHS_0 = LHS.getOperand(0);
+    SDValue LHS_1 = LHS.getOperand(1);
+
+    if (LHS.getOpcode() == ISD::VSELECT && VT == MVT::v2i32) {
+      if (CRHS_0 && CRHS_0->getAPIntValue().isSignMask() &&
+          shouldFoldFNegIntoSrc(N, LHS_0))
+        if (CRHS_1 && CRHS_1->getAPIntValue().isSignMask() &&
+            shouldFoldFNegIntoSrc(N, LHS_1)) {
+          SDLoc DL(N);
+          SDValue CastLHS =
+              DAG.getNode(ISD::BITCAST, DL, MVT::v2f32, LHS->getOperand(1));
+          SDValue CastRHS =
+              DAG.getNode(ISD::BITCAST, DL, MVT::v2f32, LHS->getOperand(2));
+          SDValue FNegLHS = DAG.getNode(ISD::FNEG, DL, MVT::v2f32, CastLHS);
+          SDValue FNegRHS = DAG.getNode(ISD::FNEG, DL, MVT::v2f32, CastRHS);
+          SDValue NewSelect = DAG.getNode(ISD::VSELECT, DL, MVT::v2f32,
+                                          LHS->getOperand(0), FNegLHS, FNegRHS);
+          return DAG.getNode(ISD::BITCAST, DL, VT, NewSelect);
+        }
+    }
+    // Possibly split vector here if one side does have a constant RHS.
+  }
+
+  // Add test for when only one of the RHS vector elements is a const. Might be
+  // possible to optimise this case.
+
+  const ConstantSDNode *CRHS = dyn_cast<ConstantSDNode>(RHS);
+
   if (CRHS && VT == MVT::i64) {
     if (SDValue Split =
             splitBinaryBitConstantOp(DCI, SDLoc(N), ISD::XOR, LHS, CRHS))

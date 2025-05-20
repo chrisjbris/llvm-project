@@ -113,8 +113,8 @@ define amdgpu_kernel void @rotl_v2i32(ptr addrspace(1) %in, <2 x i32> %x, <2 x i
 ; GFX8-NEXT:    s_load_dwordx4 s[0:3], s[4:5], 0x2c
 ; GFX8-NEXT:    s_load_dwordx2 s[4:5], s[4:5], 0x24
 ; GFX8-NEXT:    s_waitcnt lgkmcnt(0)
-; GFX8-NEXT:    s_sub_i32 s2, 32, s2
 ; GFX8-NEXT:    s_sub_i32 s3, 32, s3
+; GFX8-NEXT:    s_sub_i32 s2, 32, s2
 ; GFX8-NEXT:    v_mov_b32_e32 v0, s3
 ; GFX8-NEXT:    v_mov_b32_e32 v2, s2
 ; GFX8-NEXT:    v_alignbit_b32 v1, s1, s1, v0
@@ -138,19 +138,33 @@ define amdgpu_kernel void @rotl_v2i32(ptr addrspace(1) %in, <2 x i32> %x, <2 x i
 ; GFX10-NEXT:    global_store_dwordx2 v2, v[0:1], s[6:7]
 ; GFX10-NEXT:    s_endpgm
 ;
-; GFX11-LABEL: rotl_v2i32:
-; GFX11:       ; %bb.0: ; %entry
-; GFX11-NEXT:    s_clause 0x1
-; GFX11-NEXT:    s_load_b128 s[0:3], s[4:5], 0x2c
-; GFX11-NEXT:    s_load_b64 s[4:5], s[4:5], 0x24
-; GFX11-NEXT:    v_mov_b32_e32 v2, 0
-; GFX11-NEXT:    s_waitcnt lgkmcnt(0)
-; GFX11-NEXT:    s_sub_i32 s3, 32, s3
-; GFX11-NEXT:    s_sub_i32 s2, 32, s2
-; GFX11-NEXT:    v_alignbit_b32 v1, s1, s1, s3
-; GFX11-NEXT:    v_alignbit_b32 v0, s0, s0, s2
-; GFX11-NEXT:    global_store_b64 v2, v[0:1], s[4:5]
-; GFX11-NEXT:    s_endpgm
+; GFX11-TRUE16-LABEL: rotl_v2i32:
+; GFX11-TRUE16:       ; %bb.0: ; %entry
+; GFX11-TRUE16-NEXT:    s_clause 0x1
+; GFX11-TRUE16-NEXT:    s_load_b128 s[0:3], s[4:5], 0x2c
+; GFX11-TRUE16-NEXT:    s_load_b64 s[4:5], s[4:5], 0x24
+; GFX11-TRUE16-NEXT:    v_mov_b32_e32 v2, 0
+; GFX11-TRUE16-NEXT:    s_waitcnt lgkmcnt(0)
+; GFX11-TRUE16-NEXT:    s_sub_i32 s2, 32, s2
+; GFX11-TRUE16-NEXT:    s_delay_alu instid0(SALU_CYCLE_1)
+; GFX11-TRUE16-NEXT:    v_alignbit_b32 v1, s1, s1, s2
+; GFX11-TRUE16-NEXT:    v_alignbit_b32 v0, s0, s0, s2
+; GFX11-TRUE16-NEXT:    global_store_b64 v2, v[0:1], s[4:5]
+; GFX11-TRUE16-NEXT:    s_endpgm
+;
+; GFX11-FAKE16-LABEL: rotl_v2i32:
+; GFX11-FAKE16:       ; %bb.0: ; %entry
+; GFX11-FAKE16-NEXT:    s_clause 0x1
+; GFX11-FAKE16-NEXT:    s_load_b128 s[0:3], s[4:5], 0x2c
+; GFX11-FAKE16-NEXT:    s_load_b64 s[4:5], s[4:5], 0x24
+; GFX11-FAKE16-NEXT:    v_mov_b32_e32 v2, 0
+; GFX11-FAKE16-NEXT:    s_waitcnt lgkmcnt(0)
+; GFX11-FAKE16-NEXT:    s_sub_i32 s3, 32, s3
+; GFX11-FAKE16-NEXT:    s_sub_i32 s2, 32, s2
+; GFX11-FAKE16-NEXT:    v_alignbit_b32 v1, s1, s1, s3
+; GFX11-FAKE16-NEXT:    v_alignbit_b32 v0, s0, s0, s2
+; GFX11-FAKE16-NEXT:    global_store_b64 v2, v[0:1], s[4:5]
+; GFX11-FAKE16-NEXT:    s_endpgm
 entry:
   %0 = shl <2 x i32> %x, %y
   %1 = sub <2 x i32> <i32 32, i32 32>, %y

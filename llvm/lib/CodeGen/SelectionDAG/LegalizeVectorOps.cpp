@@ -1282,6 +1282,8 @@ void VectorLegalizer::Expand(SDNode *Node, SmallVectorImpl<SDValue> &Results) {
   }
 
   SDValue Unrolled = DAG.UnrollVectorOp(Node);
+  LLVM_DEBUG(dbgs() << "\nUnrolled node: "; Unrolled->dump());
+  LLVM_DEBUG(dbgs() << "\n");
   if (Node->getNumValues() == 1) {
     Results.push_back(Unrolled);
   } else {
