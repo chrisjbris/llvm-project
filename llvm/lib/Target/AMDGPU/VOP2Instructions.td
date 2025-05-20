@@ -977,7 +977,6 @@ def :  divergent_i64_BinOp <and, V_AND_B32_e64, v2i32>;
 def :  divergent_i64_BinOp <or,  V_OR_B32_e64, v2i32>;
 def :  divergent_i64_BinOp <xor, V_XOR_B32_e64, v2i32>;
 
-
 // mul24 w/ 64 bit output.
 class mul24_64_Pat<SDPatternOperator Op, Instruction InstLo, Instruction InstHi> : GCNPat<
   (i64 (Op i32:$src0, i32:$src1)),

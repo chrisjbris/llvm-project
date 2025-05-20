@@ -40,7 +40,6 @@
 #include "llvm/IR/IntrinsicsR600.h"
 #include "llvm/IR/MDBuilder.h"
 #include "llvm/Support/CommandLine.h"
-
 #include "llvm/Support/KnownBits.h"
 #include "llvm/Support/ModRef.h"
 #include "llvm/Transforms/Utils/LowerAtomic.h"
@@ -844,7 +843,6 @@ SITargetLowering::SITargetLowering(const TargetMachine &TM,
     AddPromotedToType(ISD::SELECT, MVT::v2f16, MVT::i32);
   } else {
     // Legalization hack.
-    // Hmm.
     setOperationAction(ISD::SELECT, {MVT::v2i16, MVT::v2f16}, Custom);
 
     setOperationAction({ISD::FNEG, ISD::FABS}, MVT::v2f16, Custom);

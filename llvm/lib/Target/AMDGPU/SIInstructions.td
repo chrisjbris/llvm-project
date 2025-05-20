@@ -2468,12 +2468,6 @@ def : GCNPat<(fshr i32:$src0, i32:$src1, i32:$src2),
 } // end True16Predicate = UseRealTrue16Insts
 
 let True16Predicate = UseFakeTrue16Insts in {
-
-// Prevents regression in fneg-modifier-casting.ll along with modifications to XorCombine() when v2i32 or is legal.
-def : AMDGPUPat <
-  (fneg (select i1:$src0, (f32 (bitconvert i32:$src1)), (f32 (bitconvert i32:$src2)))),
-    (V_CNDMASK_B32_e64 (i32 1), $src2, (i32 1), $src1, $src0)>;
-
 def : GCNPat <
   (rotr i32:$src0, i32:$src1),
   (V_ALIGNBIT_B32_fake16_e64 /* src0_modifiers */ 0, $src0,
