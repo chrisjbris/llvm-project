@@ -2376,6 +2376,10 @@ def : AMDGPUPat <
                $src1), sub1)
 >;
 
+def : AMDGPUPat <
+  (fneg (select i1:$src0, (f32 (bitconvert i32:$src1)), (f32 (bitconvert i32:$src2)))),
+    (V_CNDMASK_B32_e64 (i32 1), $src2, (i32 1), $src1, $src0)>;
+
 let True16Predicate = NotHasTrue16BitInsts in {
 def : ROTRPattern <V_ALIGNBIT_B32_e64>;
 
