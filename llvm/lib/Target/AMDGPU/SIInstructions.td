@@ -2379,19 +2379,6 @@ def : AMDGPUPat <
 let True16Predicate = NotHasTrue16BitInsts in {
 def : ROTRPattern <V_ALIGNBIT_B32_e64>;
 
-def : AMDGPUPat <
-  (rotr v2i32:$src0, v2i32:$src1),
-  (REG_SEQUENCE VReg_64,
-    (V_ALIGNBIT_B32_e64
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src1, sub0))), sub0,
-    (V_ALIGNBIT_B32_e64
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)),
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src1, sub1))), sub1)
->;
-
 // Prevents regression in fneg-modifier-casting.ll along with modifications to XorCombine() when v2i32 or is legal.
 def : AMDGPUPat <
   (fneg (select i1:$src0, (f32 (bitconvert i32:$src1)), (f32 (bitconvert i32:$src2)))),
@@ -2404,20 +2391,6 @@ def : GCNPat<(i32 (trunc (srl i64:$src0, (and i32:$src1, (i32 31))))),
 def : GCNPat<(i32 (trunc (srl i64:$src0, (i32 ShiftAmt32Imm:$src1)))),
           (V_ALIGNBIT_B32_e64 (i32 (EXTRACT_SUBREG (i64 $src0), sub1)),
                           (i32 (EXTRACT_SUBREG (i64 $src0), sub0)), $src1)>;
-
-def : GCNPat <
-  (rotr v2i32:$src0, v2i32:$src1),
-  (REG_SEQUENCE VReg_64,
-    (V_ALIGNBIT_B32_e64
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src1, sub0))), sub0,
-    (V_ALIGNBIT_B32_e64
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)),
-      (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)), 
-      (i32 (EXTRACT_SUBREG VReg_64:$src1, sub1))), sub1)
->;
-
 } // end True16Predicate = NotHasTrue16BitInsts
 
 let True16Predicate = UseRealTrue16Insts in {
@@ -2435,20 +2408,6 @@ def : GCNPat <
                           (EXTRACT_SUBREG $src1, lo16),
                           /* clamp */ 0, /* op_sel */ 0)
 >;
-
-def : GCNPat <
-  (rotr v2i32:$src0, v2i32:$src1),
-  (REG_SEQUENCE VReg_64,
-    (V_ALIGNBIT_B32_t16_e64
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      0, (EXTRACT_SUBREG (i32 (EXTRACT_SUBREG VReg_64:$src1, sub0)) ,lo16),0,0), sub0,
-    (V_ALIGNBIT_B32_t16_e64
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)),
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)), 
-      0, (EXTRACT_SUBREG (i32 (EXTRACT_SUBREG VReg_64:$src1, sub0)) ,lo16),0,0), sub1)
->;
-
 
 def : GCNPat<(i32 (trunc (srl i64:$src0, (i32 ShiftAmt32Imm:$src1)))),
           (V_ALIGNBIT_B32_t16_e64 0, /* src0_modifiers */
@@ -2475,20 +2434,6 @@ def : GCNPat <
                              /* src2_modifiers */ 0,
                              $src1, /* clamp */ 0, /* op_sel */ 0)
 >;
-
-def : GCNPat <
-  (rotr v2i32:$src0, v2i32:$src1),
-  (REG_SEQUENCE VReg_64,
-    (V_ALIGNBIT_B32_fake16_e64
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub0)), 
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src1, sub0)),0,0), sub0,
-    (V_ALIGNBIT_B32_fake16_e64
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)),
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src0, sub1)), 
-      0, (i32 (EXTRACT_SUBREG VReg_64:$src1, sub1)),0,0), sub1)
->;
-
 
 def : GCNPat<(i32 (trunc (srl i64:$src0, (and i32:$src1, (i32 31))))),
      (V_ALIGNBIT_B32_fake16_e64 0, /* src0_modifiers */

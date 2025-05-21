@@ -431,12 +431,12 @@ SITargetLowering::SITargetLowering(const TargetMachine &TM,
   }
 
   setOperationAction({ISD::AND, ISD::OR, ISD::XOR}, MVT::v2i32, Legal);
-  // Prevent SELECT from being implemented with the above bitwise ops and
-  // instead use cndmask.
+  // Prevent SELECT v2i32 from being implemented with the above bitwise ops and
+  // instead lower to cndmask in SITargetLowering::LowerSELECT().
   setOperationAction(ISD::SELECT, MVT::v2i32, Custom);
   // Enable MatchRotate to produce ISD::ROTR, which is later transformed to
   // alignbit.
-  setOperationAction(ISD::ROTR, MVT::v2i32, Legal);
+  setOperationAction(ISD::ROTR, MVT::v2i32, Custom);
 
   setOperationAction(ISD::BUILD_VECTOR, {MVT::v4f16, MVT::v4i16, MVT::v4bf16},
                      Custom);
@@ -12893,11 +12893,6 @@ SDValue SITargetLowering::performOrCombine(SDNode *N,
   if (VT == MVT::v2i32) {
     if (LHS->getOpcode() == ISD::BUILD_VECTOR &&
         RHS->getOpcode() == ISD::BUILD_VECTOR) {
-      // DAG.canonicalizeCommutativeBinop(ISD::OR, RHS, LHS);
-      SDValue BVLHS = LHS->getOperand(0);
-      SDValue CLHS = LHS->getOperand(1);
-      SDValue CRHS = RHS->getOperand(0);
-      SDValue BVRHS = RHS->getOperand(1);
       LLVM_DEBUG(dbgs() << "### Performing v2i32 SIISelLowering "
                            "DAGCombine::CombineOR\n";);
 
