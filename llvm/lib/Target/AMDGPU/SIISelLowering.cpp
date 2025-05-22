@@ -5944,6 +5944,36 @@ SDValue SITargetLowering::splitUnaryVectorOp(SDValue Op,
   return DAG.getNode(ISD::CONCAT_VECTORS, SDLoc(Op), VT, OpLo, OpHi);
 }
 
+// Enable lowering of ROTR for vxi32 types.
+SDValue SITargetLowering::lowerROTR(SDValue Op, SelectionDAG &DAG) const {
+  unsigned Opc = Op.getOpcode();
+  EVT VT = Op.getValueType();
+  assert(Opc == ISD::ROTR && "Expected ROTR Opcode for lowerROTR.");
+
+  assert((VT == MVT::v2i32 || VT == MVT::v4i32 || VT == MVT::v8i32 ||
+          VT == MVT::v16i32) &&
+         "Unexpected ValueType.");
+
+  unsigned VectorSize = VT.getVectorNumElements();
+  EVT ElementType = VT.getVectorElementType();
+  SDLoc SL(Op);
+  auto LHS = Op->getOperand(0);
+  auto RHS = Op->getOperand(1);
+
+  SmallVector<SDValue, 4> RotateTargets;
+  SmallVector<SDValue, 4> RotateSizes;
+  SmallVector<SDValue, 4> Ops;
+
+  DAG.ExtractVectorElements(LHS, RotateTargets, 0, VectorSize, ElementType);
+  DAG.ExtractVectorElements(RHS, RotateSizes, 0, VectorSize, ElementType);
+
+  for (unsigned i = 0; i < VectorSize; i++)
+    Ops.push_back(DAG.getNode(ISD::ROTR, SL, ElementType, RotateTargets[i],
+                              RotateSizes[i], Op->getFlags()));
+
+  return DAG.getBuildVector(VT, SL, Ops);
+}
+
 // Work around LegalizeDAG doing the wrong thing and fully scalarizing if the
 // wider vector type is legal.
 SDValue SITargetLowering::splitBinaryVectorOp(SDValue Op,
@@ -6130,6 +6160,8 @@ SDValue SITargetLowering::LowerOperation(SDValue Op, SelectionDAG &DAG) const {
     return lowerGET_FPENV(Op, DAG);
   case ISD::SET_FPENV:
     return lowerSET_FPENV(Op, DAG);
+  case ISD::ROTR:
+    return lowerROTR(Op, DAG);
   }
   return SDValue();
 }
