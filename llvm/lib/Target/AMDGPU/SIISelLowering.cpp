@@ -5957,8 +5957,8 @@ SDValue SITargetLowering::lowerROTR(SDValue Op, SelectionDAG &DAG) const {
   unsigned VectorSize = VT.getVectorNumElements();
   EVT ElementType = VT.getVectorElementType();
   SDLoc SL(Op);
-  auto LHS = Op->getOperand(0);
-  auto RHS = Op->getOperand(1);
+  const SDValue &LHS = Op->getOperand(0);
+  const SDValue &RHS = Op->getOperand(1);
 
   SmallVector<SDValue, 4> RotateTargets;
   SmallVector<SDValue, 4> RotateSizes;
@@ -12921,41 +12921,47 @@ SDValue SITargetLowering::performOrCombine(SDNode *N,
 
   // Detect identity v2i32 OR and replace with identity source node.
   // Specifically an Or that has operands constructed from the same source node
-  // via extract_vector_elt and build_vector.
+  // via extract_vector_elt and build_vector. I.E.
+  // v2i32 or(
+  //   v2i32 build_vector(
+  //     i32 extract_elt(%IdentitySrc, 0),
+  //     i32 0
+  //   ),
+  //   v2i32 build_vector(
+  //     i32 0,
+  //     i32 extract_elt(%IdentitySrc, 1)
+  //   )
+  // )
+  // =>
+  // v2i32 %IdentitySrc
   if (VT == MVT::v2i32) {
     if (LHS->getOpcode() == ISD::BUILD_VECTOR &&
         RHS->getOpcode() == ISD::BUILD_VECTOR) {
       LLVM_DEBUG(dbgs() << "### Performing v2i32 SIISelLowering "
                            "DAGCombine::CombineOR\n";);
 
-      auto *LC = dyn_cast<ConstantSDNode>(LHS->getOperand(1));
-      auto *RC = dyn_cast<ConstantSDNode>(RHS->getOperand(0));
+      if (auto *LC = dyn_cast<ConstantSDNode>(LHS->getOperand(1)))
+        if (auto *RC = dyn_cast<ConstantSDNode>(RHS->getOperand(0))) {
 
-      if (LC && RC) {
+          // Test for and normalise build vectors.
+          if (LC->getZExtValue() == 0 && RC->getZExtValue() == 0) {
 
-        // Test for and normalise build vectors.
-        if (LHS->getOpcode() == ISD::BUILD_VECTOR &&
-            RHS->getOpcode() == ISD::BUILD_VECTOR &&
-            // Check cast to constantnode here
-            LHS->getConstantOperandVal(1) == 0 &&
-            RHS->getConstantOperandVal(0) == 0) {
+            // Get the extract_vector_element operands.
+            SDValue LEVE = LHS->getOperand(0);
+            SDValue REVE = RHS->getOperand(1);
 
-          // Get the extract_vector_element operands.
-          SDValue LEVE = LHS->getOperand(0);
-          SDValue REVE = RHS->getOperand(1);
-
-          if (LEVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT &&
-              REVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT) {
-            // Check that the the elements from the same vector are extracted.
-            if (LEVE->getOperand(0) == REVE->getOperand(0) &&
-                LEVE->getOperand(1) != REVE->getOperand(1)) {
-              LLVM_DEBUG(dbgs() << "### Found identity OR, folding...\n";);
-              SDValue IdentitySrc = LEVE.getOperand(0);
-              return IdentitySrc;
+            if (LEVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT &&
+                REVE->getOpcode() == ISD::EXTRACT_VECTOR_ELT) {
+              // Check that different elements from the same vector are extracted.
+              if (LEVE->getOperand(0) == REVE->getOperand(0) &&
+                  LEVE->getOperand(1) != REVE->getOperand(1)) {
+                LLVM_DEBUG(dbgs() << "### Found identity OR, folding...\n";);
+                SDValue IdentitySrc = LEVE.getOperand(0);
+                return IdentitySrc;
+              }
             }
           }
         }
-      }
     }
   }
 
