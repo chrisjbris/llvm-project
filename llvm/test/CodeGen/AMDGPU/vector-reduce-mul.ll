@@ -1098,8 +1098,7 @@ define i16 @test_vector_reduce_mul_v3i16(<3 x i16> %v) {
 ; GFX7-SDAG-NEXT:    v_or_b32_e32 v2, 0x10000, v2
 ; GFX7-SDAG-NEXT:    v_mul_lo_u32 v0, v0, v2
 ; GFX7-SDAG-NEXT:    v_and_b32_e32 v1, 0xffff, v1
-; GFX7-SDAG-NEXT:    v_lshrrev_b32_e32 v2, 16, v2
-; GFX7-SDAG-NEXT:    v_mul_u32_u24_e32 v1, v1, v2
+; GFX7-SDAG-NEXT:    v_mul_u32_u24_e32 v1, 1, v1
 ; GFX7-SDAG-NEXT:    v_mul_lo_u32 v0, v0, v1
 ; GFX7-SDAG-NEXT:    s_setpc_b64 s[30:31]
 ;

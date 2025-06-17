@@ -32837,30 +32837,30 @@ define <16 x i16> @bitcast_v32i8_to_v16i16(<32 x i8> %a, i32 %b) {
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_mov_b32_e32 v33, v2
-; VI-NEXT:    v_mov_b32_e32 v31, v0
+; VI-NEXT:    v_mov_b32_e32 v34, v0
 ; VI-NEXT:    buffer_load_dword v0, off, s[0:3], s32 offset:4
 ; VI-NEXT:    buffer_load_ushort v2, off, s[0:3], s32
 ; VI-NEXT:    v_mov_b32_e32 v32, v6
-; VI-NEXT:    v_mov_b32_e32 v34, v4
+; VI-NEXT:    v_mov_b32_e32 v31, v4
 ; VI-NEXT:    v_lshlrev_b16_e32 v35, 8, v1
 ; VI-NEXT:    v_lshlrev_b16_e32 v36, 8, v3
-; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v5
-; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v7
+; VI-NEXT:    v_lshlrev_b16_e32 v48, 8, v5
+; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v7
 ; VI-NEXT:    v_lshlrev_b16_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b16_e32 v11, 8, v11
-; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v13
-; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v15
-; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v17
-; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v19
-; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v21
-; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v23
-; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v25
-; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v27
-; VI-NEXT:    v_lshlrev_b16_e32 v29, 8, v29
+; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v13
+; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v15
+; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v17
+; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v19
+; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v21
+; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v23
+; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v25
+; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v27
+; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v29
 ; VI-NEXT:    s_waitcnt vmcnt(1)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v0
 ; VI-NEXT:    s_waitcnt vmcnt(0)
-; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v2
+; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v2
 ; VI-NEXT:    ; implicit-def: $vgpr0_vgpr1_vgpr2_vgpr3_vgpr4_vgpr5_vgpr6_vgpr7
 ; VI-NEXT:    s_and_saveexec_b64 s[4:5], vcc
 ; VI-NEXT:    s_xor_b64 s[4:5], exec, s[4:5]
@@ -32872,33 +32872,33 @@ define <16 x i16> @bitcast_v32i8_to_v16i16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
 ; VI-NEXT:  .LBB98_3: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v31, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v34, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v33, v36 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v34, v37 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v2, v32, v38 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v31, v48 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v2, v32, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v8, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v10, v11 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v12, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v14, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v12, v38 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v14, v37 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v3, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v16, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v18, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v16, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v18, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v4, v4, v5 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v20, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v20, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v22, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v5, v5, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v24, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v26, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v24, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v26, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v6, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v28, v29 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v8, v30, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v28, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v8, v30, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v7, v7, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    ; implicit-def: $vgpr31
-; VI-NEXT:    ; implicit-def: $vgpr33
 ; VI-NEXT:    ; implicit-def: $vgpr34
+; VI-NEXT:    ; implicit-def: $vgpr33
+; VI-NEXT:    ; implicit-def: $vgpr31
 ; VI-NEXT:    ; implicit-def: $vgpr32
 ; VI-NEXT:    ; implicit-def: $vgpr8
 ; VI-NEXT:    ; implicit-def: $vgpr10
@@ -32914,10 +32914,12 @@ define <16 x i16> @bitcast_v32i8_to_v16i16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr30
 ; VI-NEXT:    ; implicit-def: $vgpr35
 ; VI-NEXT:    ; implicit-def: $vgpr36
-; VI-NEXT:    ; implicit-def: $vgpr37
-; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr48
+; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    ; implicit-def: $vgpr9
 ; VI-NEXT:    ; implicit-def: $vgpr11
+; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr37
 ; VI-NEXT:    ; implicit-def: $vgpr13
 ; VI-NEXT:    ; implicit-def: $vgpr15
 ; VI-NEXT:    ; implicit-def: $vgpr17
@@ -32926,67 +32928,65 @@ define <16 x i16> @bitcast_v32i8_to_v16i16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr23
 ; VI-NEXT:    ; implicit-def: $vgpr25
 ; VI-NEXT:    ; implicit-def: $vgpr27
-; VI-NEXT:    ; implicit-def: $vgpr29
-; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    s_andn2_saveexec_b64 s[4:5], s[4:5]
 ; VI-NEXT:    s_cbranch_execz .LBB98_2
 ; VI-NEXT:  .LBB98_4: ; %cmp.true
+; VI-NEXT:    v_add_u16_e32 v0, 3, v31
+; VI-NEXT:    v_add_u16_e32 v1, 3, v32
+; VI-NEXT:    v_or_b32_sdwa v0, v48, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v1, v39, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_mov_b32_e32 v2, 0x300
+; VI-NEXT:    v_add_u16_e32 v3, 3, v12
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v0
+; VI-NEXT:    v_add_u16_sdwa v1, v1, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v38, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_e32 v1, v0, v1
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v3
+; VI-NEXT:    v_add_u16_e32 v3, 3, v14
+; VI-NEXT:    v_or_b32_sdwa v3, v37, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v3, v3, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v3, v0, v3
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v30
-; VI-NEXT:    v_or_b32_sdwa v0, v39, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_mov_b32_e32 v1, 0x300
-; VI-NEXT:    v_add_u16_sdwa v7, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v28
-; VI-NEXT:    v_or_b32_sdwa v28, v29, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v27, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v6, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v24
-; VI-NEXT:    v_or_b32_sdwa v24, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v22
+; VI-NEXT:    v_add_u16_sdwa v7, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v28
+; VI-NEXT:    v_or_b32_sdwa v12, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v23, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v5, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v20
-; VI-NEXT:    v_or_b32_sdwa v20, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v18
+; VI-NEXT:    v_add_u16_sdwa v6, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v24
+; VI-NEXT:    v_or_b32_sdwa v14, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v22
 ; VI-NEXT:    v_or_b32_sdwa v0, v19, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v4, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v16, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v14
+; VI-NEXT:    v_add_u16_sdwa v5, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v20
+; VI-NEXT:    v_or_b32_sdwa v17, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v18
 ; VI-NEXT:    v_or_b32_sdwa v0, v15, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v3, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v12
-; VI-NEXT:    v_or_b32_sdwa v12, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v4, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v13, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v10
 ; VI-NEXT:    v_or_b32_sdwa v0, v11, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v2, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_sdwa v10, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v8
 ; VI-NEXT:    v_or_b32_sdwa v8, v9, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v32
-; VI-NEXT:    v_or_b32_sdwa v0, v38, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v9, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v34
-; VI-NEXT:    v_or_b32_sdwa v10, v37, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v33
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v8
 ; VI-NEXT:    v_or_b32_sdwa v0, v36, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_e32 v2, v8, v2
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
-; VI-NEXT:    v_add_u16_sdwa v0, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v1, 3, v31
-; VI-NEXT:    v_or_b32_e32 v3, v8, v3
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v35, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v0, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v2, 3, v34
+; VI-NEXT:    v_or_b32_sdwa v2, v35, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v2
+; VI-NEXT:    v_or_b32_e32 v0, v2, v0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v8
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v13
 ; VI-NEXT:    v_or_b32_e32 v4, v8, v4
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v20
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v1
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v17
 ; VI-NEXT:    v_or_b32_e32 v5, v8, v5
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v24
-; VI-NEXT:    v_or_b32_e32 v0, v1, v0
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v10
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v14
 ; VI-NEXT:    v_or_b32_e32 v6, v8, v6
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v28
-; VI-NEXT:    v_or_b32_e32 v1, v1, v9
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
+; VI-NEXT:    v_or_b32_e32 v2, v2, v10
 ; VI-NEXT:    v_or_b32_e32 v7, v8, v7
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
@@ -33775,15 +33775,15 @@ define inreg <16 x i16> @bitcast_v32i8_to_v16i16_scalar(<32 x i8> inreg %a, i32 
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v18
-; VI-NEXT:    v_mov_b32_e32 v21, v6
-; VI-NEXT:    v_mov_b32_e32 v20, v4
-; VI-NEXT:    v_mov_b32_e32 v22, v2
+; VI-NEXT:    v_mov_b32_e32 v20, v6
+; VI-NEXT:    v_mov_b32_e32 v22, v4
+; VI-NEXT:    v_mov_b32_e32 v21, v2
 ; VI-NEXT:    v_mov_b32_e32 v19, v0
 ; VI-NEXT:    s_and_b64 s[4:5], vcc, exec
-; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v1
-; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v3
-; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v5
-; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v7
+; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v1
+; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v3
+; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v5
+; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v7
 ; VI-NEXT:    v_lshlrev_b32_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b32_e32 v11, 8, v11
 ; VI-NEXT:    v_lshlrev_b32_e32 v13, 8, v13
@@ -33791,24 +33791,12 @@ define inreg <16 x i16> @bitcast_v32i8_to_v16i16_scalar(<32 x i8> inreg %a, i32 
 ; VI-NEXT:    v_lshlrev_b32_e32 v17, 8, v17
 ; VI-NEXT:    s_cbranch_scc0 .LBB99_4
 ; VI-NEXT:  ; %bb.1: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v22, v23 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v20, v24 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s4, s4, s5
-; VI-NEXT:    v_or_b32_sdwa v2, v21, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v19, v18 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_e32 v3, s4, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v19, v25 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v1, s4, v0
 ; VI-NEXT:    s_and_b32 s4, s16, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s17, 8
 ; VI-NEXT:    s_or_b32 s4, s4, s5
@@ -33827,15 +33815,30 @@ define inreg <16 x i16> @bitcast_v32i8_to_v16i16_scalar(<32 x i8> inreg %a, i32 
 ; VI-NEXT:    s_and_b32 s5, s5, 0xffff
 ; VI-NEXT:    s_lshl_b32 s6, s6, 16
 ; VI-NEXT:    s_or_b32 s5, s5, s6
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    s_or_b32 s5, s5, s6
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
 ; VI-NEXT:    s_or_b32 s6, s6, s7
 ; VI-NEXT:    s_and_b32 s7, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s8, s27, 8
+; VI-NEXT:    v_or_b32_sdwa v3, v1, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v20, v24 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s7, s7, s8
+; VI-NEXT:    v_or_b32_sdwa v5, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
+; VI-NEXT:    v_or_b32_sdwa v2, v21, v18 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s6, s6, s7
+; VI-NEXT:    v_or_b32_sdwa v4, v2, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_mov_b32_e32 v0, s4
 ; VI-NEXT:    v_mov_b32_e32 v1, s5
 ; VI-NEXT:    v_mov_b32_e32 v2, s6
@@ -33844,82 +33847,82 @@ define inreg <16 x i16> @bitcast_v32i8_to_v16i16_scalar(<32 x i8> inreg %a, i32 
 ; VI-NEXT:    s_add_i32 s28, s28, 3
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    s_add_i32 s26, s26, 3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
 ; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v19
+; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_or_b32_sdwa v0, v25, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_and_b32 s4, s4, 0xffff
+; VI-NEXT:    s_add_i32 s22, s22, 3
+; VI-NEXT:    v_or_b32_e32 v0, s4, v0
+; VI-NEXT:    s_and_b32 s4, s22, 0xff
+; VI-NEXT:    s_lshl_b32 s5, s23, 8
+; VI-NEXT:    s_add_i32 s20, s20, 3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v12
+; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    s_and_b32 s5, s20, 0xff
+; VI-NEXT:    s_lshl_b32 s6, s21, 8
+; VI-NEXT:    v_or_b32_sdwa v6, v13, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
+; VI-NEXT:    s_or_b32 s5, s6, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_addk_i32 s5, 0x300
+; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
+; VI-NEXT:    s_lshl_b32 s4, s4, 16
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
+; VI-NEXT:    s_add_i32 s26, s26, 3
+; VI-NEXT:    s_or_b32 s4, s4, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v24, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_and_b32 s5, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s6, s27, 8
 ; VI-NEXT:    s_add_i32 s24, s24, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
 ; VI-NEXT:    s_or_b32 s5, s6, s5
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
-; VI-NEXT:    s_add_i32 s22, s22, 3
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
-; VI-NEXT:    s_or_b32 s6, s7, s6
-; VI-NEXT:    s_and_b32 s7, s22, 0xff
-; VI-NEXT:    s_lshl_b32 s8, s23, 8
-; VI-NEXT:    s_add_i32 s20, s20, 3
-; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
-; VI-NEXT:    s_or_b32 s7, s8, s7
-; VI-NEXT:    s_and_b32 s8, s20, 0xff
-; VI-NEXT:    s_lshl_b32 s9, s21, 8
 ; VI-NEXT:    s_add_i32 s18, s18, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v25, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s8, s9, s8
-; VI-NEXT:    s_and_b32 s9, s18, 0xff
-; VI-NEXT:    s_lshl_b32 s10, s19, 8
+; VI-NEXT:    v_or_b32_sdwa v4, v23, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
+; VI-NEXT:    s_or_b32 s6, s7, s6
+; VI-NEXT:    s_and_b32 s7, s18, 0xff
+; VI-NEXT:    s_lshl_b32 s8, s19, 8
 ; VI-NEXT:    s_add_i32 s16, s16, 3
-; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
-; VI-NEXT:    s_or_b32 s9, s10, s9
-; VI-NEXT:    s_and_b32 s10, s16, 0xff
-; VI-NEXT:    s_lshl_b32 s11, s17, 8
-; VI-NEXT:    v_or_b32_sdwa v4, v24, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
-; VI-NEXT:    s_or_b32 s10, s11, s10
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v14
-; VI-NEXT:    v_or_b32_sdwa v3, v23, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_or_b32 s7, s8, s7
+; VI-NEXT:    s_and_b32 s8, s16, 0xff
+; VI-NEXT:    s_lshl_b32 s9, s17, 8
+; VI-NEXT:    v_add_u32_e32 v9, vcc, 0x300, v3
+; VI-NEXT:    s_or_b32 s8, s9, s8
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v14
 ; VI-NEXT:    s_addk_i32 s6, 0x300
 ; VI-NEXT:    s_addk_i32 s8, 0x300
-; VI-NEXT:    s_addk_i32 s10, 0x300
-; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v15, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v12
-; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v19
-; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v4, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v2, v15, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_lshl_b32 s5, s5, 16
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
-; VI-NEXT:    s_lshl_b32 s9, s9, 16
-; VI-NEXT:    s_and_b32 s10, s10, 0xffff
 ; VI-NEXT:    s_and_b32 s8, s8, 0xffff
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v17, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 0x300, v1
-; VI-NEXT:    v_or_b32_sdwa v2, v13, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s9, s9, s10
+; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v5, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_or_b32_sdwa v1, v17, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 0x300, v2
 ; VI-NEXT:    s_or_b32 s7, s7, s8
 ; VI-NEXT:    s_or_b32 s5, s5, s6
-; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    s_add_i32 s9, s9, 0x3000000
+; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    s_add_i32 s7, s7, 0x3000000
+; VI-NEXT:    s_add_i32 s4, s4, 0x3000000
 ; VI-NEXT:    s_add_i32 s5, s5, 0x3000000
-; VI-NEXT:    v_or_b32_e32 v3, s4, v3
-; VI-NEXT:    v_or_b32_sdwa v4, v4, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v5, v5, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v2, v2, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v3
-; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v4
-; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v5
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v2
+; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x3000000, v0
-; VI-NEXT:    v_mov_b32_e32 v0, s9
-; VI-NEXT:    v_mov_b32_e32 v1, s7
+; VI-NEXT:    v_mov_b32_e32 v0, s7
+; VI-NEXT:    v_mov_b32_e32 v1, s4
 ; VI-NEXT:    v_mov_b32_e32 v2, s5
 ; VI-NEXT:  .LBB99_3: ; %end
 ; VI-NEXT:    s_setpc_b64 s[30:31]
@@ -38054,30 +38057,30 @@ define <16 x half> @bitcast_v32i8_to_v16f16(<32 x i8> %a, i32 %b) {
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_mov_b32_e32 v33, v2
-; VI-NEXT:    v_mov_b32_e32 v31, v0
+; VI-NEXT:    v_mov_b32_e32 v34, v0
 ; VI-NEXT:    buffer_load_dword v0, off, s[0:3], s32 offset:4
 ; VI-NEXT:    buffer_load_ushort v2, off, s[0:3], s32
 ; VI-NEXT:    v_mov_b32_e32 v32, v6
-; VI-NEXT:    v_mov_b32_e32 v34, v4
+; VI-NEXT:    v_mov_b32_e32 v31, v4
 ; VI-NEXT:    v_lshlrev_b16_e32 v35, 8, v1
 ; VI-NEXT:    v_lshlrev_b16_e32 v36, 8, v3
-; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v5
-; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v7
+; VI-NEXT:    v_lshlrev_b16_e32 v48, 8, v5
+; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v7
 ; VI-NEXT:    v_lshlrev_b16_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b16_e32 v11, 8, v11
-; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v13
-; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v15
-; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v17
-; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v19
-; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v21
-; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v23
-; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v25
-; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v27
-; VI-NEXT:    v_lshlrev_b16_e32 v29, 8, v29
+; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v13
+; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v15
+; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v17
+; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v19
+; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v21
+; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v23
+; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v25
+; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v27
+; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v29
 ; VI-NEXT:    s_waitcnt vmcnt(1)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v0
 ; VI-NEXT:    s_waitcnt vmcnt(0)
-; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v2
+; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v2
 ; VI-NEXT:    ; implicit-def: $vgpr0_vgpr1_vgpr2_vgpr3_vgpr4_vgpr5_vgpr6_vgpr7
 ; VI-NEXT:    s_and_saveexec_b64 s[4:5], vcc
 ; VI-NEXT:    s_xor_b64 s[4:5], exec, s[4:5]
@@ -38089,33 +38092,33 @@ define <16 x half> @bitcast_v32i8_to_v16f16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
 ; VI-NEXT:  .LBB106_3: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v31, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v34, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v33, v36 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v34, v37 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v2, v32, v38 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v31, v48 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v2, v32, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v8, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v10, v11 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v12, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v14, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v12, v38 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v14, v37 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v3, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v16, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v18, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v16, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v18, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v4, v4, v5 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v20, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v20, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v22, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v5, v5, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v24, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v26, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v24, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v26, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v6, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v28, v29 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v8, v30, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v28, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v8, v30, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v7, v7, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    ; implicit-def: $vgpr31
-; VI-NEXT:    ; implicit-def: $vgpr33
 ; VI-NEXT:    ; implicit-def: $vgpr34
+; VI-NEXT:    ; implicit-def: $vgpr33
+; VI-NEXT:    ; implicit-def: $vgpr31
 ; VI-NEXT:    ; implicit-def: $vgpr32
 ; VI-NEXT:    ; implicit-def: $vgpr8
 ; VI-NEXT:    ; implicit-def: $vgpr10
@@ -38131,10 +38134,12 @@ define <16 x half> @bitcast_v32i8_to_v16f16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr30
 ; VI-NEXT:    ; implicit-def: $vgpr35
 ; VI-NEXT:    ; implicit-def: $vgpr36
-; VI-NEXT:    ; implicit-def: $vgpr37
-; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr48
+; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    ; implicit-def: $vgpr9
 ; VI-NEXT:    ; implicit-def: $vgpr11
+; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr37
 ; VI-NEXT:    ; implicit-def: $vgpr13
 ; VI-NEXT:    ; implicit-def: $vgpr15
 ; VI-NEXT:    ; implicit-def: $vgpr17
@@ -38143,67 +38148,65 @@ define <16 x half> @bitcast_v32i8_to_v16f16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr23
 ; VI-NEXT:    ; implicit-def: $vgpr25
 ; VI-NEXT:    ; implicit-def: $vgpr27
-; VI-NEXT:    ; implicit-def: $vgpr29
-; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    s_andn2_saveexec_b64 s[4:5], s[4:5]
 ; VI-NEXT:    s_cbranch_execz .LBB106_2
 ; VI-NEXT:  .LBB106_4: ; %cmp.true
+; VI-NEXT:    v_add_u16_e32 v0, 3, v31
+; VI-NEXT:    v_add_u16_e32 v1, 3, v32
+; VI-NEXT:    v_or_b32_sdwa v0, v48, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v1, v39, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_mov_b32_e32 v2, 0x300
+; VI-NEXT:    v_add_u16_e32 v3, 3, v12
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v0
+; VI-NEXT:    v_add_u16_sdwa v1, v1, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v38, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_e32 v1, v0, v1
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v3
+; VI-NEXT:    v_add_u16_e32 v3, 3, v14
+; VI-NEXT:    v_or_b32_sdwa v3, v37, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v3, v3, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v3, v0, v3
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v30
-; VI-NEXT:    v_or_b32_sdwa v0, v39, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_mov_b32_e32 v1, 0x300
-; VI-NEXT:    v_add_u16_sdwa v7, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v28
-; VI-NEXT:    v_or_b32_sdwa v28, v29, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v27, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v6, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v24
-; VI-NEXT:    v_or_b32_sdwa v24, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v22
+; VI-NEXT:    v_add_u16_sdwa v7, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v28
+; VI-NEXT:    v_or_b32_sdwa v12, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v23, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v5, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v20
-; VI-NEXT:    v_or_b32_sdwa v20, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v18
+; VI-NEXT:    v_add_u16_sdwa v6, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v24
+; VI-NEXT:    v_or_b32_sdwa v14, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v22
 ; VI-NEXT:    v_or_b32_sdwa v0, v19, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v4, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v16, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v14
+; VI-NEXT:    v_add_u16_sdwa v5, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v20
+; VI-NEXT:    v_or_b32_sdwa v17, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v18
 ; VI-NEXT:    v_or_b32_sdwa v0, v15, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v3, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v12
-; VI-NEXT:    v_or_b32_sdwa v12, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v4, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v13, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v10
 ; VI-NEXT:    v_or_b32_sdwa v0, v11, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v2, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_sdwa v10, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v8
 ; VI-NEXT:    v_or_b32_sdwa v8, v9, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v32
-; VI-NEXT:    v_or_b32_sdwa v0, v38, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v9, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v34
-; VI-NEXT:    v_or_b32_sdwa v10, v37, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v33
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v8
 ; VI-NEXT:    v_or_b32_sdwa v0, v36, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_e32 v2, v8, v2
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
-; VI-NEXT:    v_add_u16_sdwa v0, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v1, 3, v31
-; VI-NEXT:    v_or_b32_e32 v3, v8, v3
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v35, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v0, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v2, 3, v34
+; VI-NEXT:    v_or_b32_sdwa v2, v35, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v2
+; VI-NEXT:    v_or_b32_e32 v0, v2, v0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v8
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v13
 ; VI-NEXT:    v_or_b32_e32 v4, v8, v4
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v20
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v1
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v17
 ; VI-NEXT:    v_or_b32_e32 v5, v8, v5
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v24
-; VI-NEXT:    v_or_b32_e32 v0, v1, v0
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v10
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v14
 ; VI-NEXT:    v_or_b32_e32 v6, v8, v6
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v28
-; VI-NEXT:    v_or_b32_e32 v1, v1, v9
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
+; VI-NEXT:    v_or_b32_e32 v2, v2, v10
 ; VI-NEXT:    v_or_b32_e32 v7, v8, v7
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
@@ -38965,15 +38968,15 @@ define inreg <16 x half> @bitcast_v32i8_to_v16f16_scalar(<32 x i8> inreg %a, i32
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v18
-; VI-NEXT:    v_mov_b32_e32 v21, v6
-; VI-NEXT:    v_mov_b32_e32 v20, v4
-; VI-NEXT:    v_mov_b32_e32 v22, v2
+; VI-NEXT:    v_mov_b32_e32 v20, v6
+; VI-NEXT:    v_mov_b32_e32 v22, v4
+; VI-NEXT:    v_mov_b32_e32 v21, v2
 ; VI-NEXT:    v_mov_b32_e32 v19, v0
 ; VI-NEXT:    s_and_b64 s[4:5], vcc, exec
-; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v1
-; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v3
-; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v5
-; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v7
+; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v1
+; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v3
+; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v5
+; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v7
 ; VI-NEXT:    v_lshlrev_b32_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b32_e32 v11, 8, v11
 ; VI-NEXT:    v_lshlrev_b32_e32 v13, 8, v13
@@ -38981,24 +38984,12 @@ define inreg <16 x half> @bitcast_v32i8_to_v16f16_scalar(<32 x i8> inreg %a, i32
 ; VI-NEXT:    v_lshlrev_b32_e32 v17, 8, v17
 ; VI-NEXT:    s_cbranch_scc0 .LBB107_4
 ; VI-NEXT:  ; %bb.1: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v22, v23 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v20, v24 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s4, s4, s5
-; VI-NEXT:    v_or_b32_sdwa v2, v21, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v19, v18 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_e32 v3, s4, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v19, v25 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v1, s4, v0
 ; VI-NEXT:    s_and_b32 s4, s16, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s17, 8
 ; VI-NEXT:    s_or_b32 s4, s4, s5
@@ -39017,15 +39008,30 @@ define inreg <16 x half> @bitcast_v32i8_to_v16f16_scalar(<32 x i8> inreg %a, i32
 ; VI-NEXT:    s_and_b32 s5, s5, 0xffff
 ; VI-NEXT:    s_lshl_b32 s6, s6, 16
 ; VI-NEXT:    s_or_b32 s5, s5, s6
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    s_or_b32 s5, s5, s6
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
 ; VI-NEXT:    s_or_b32 s6, s6, s7
 ; VI-NEXT:    s_and_b32 s7, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s8, s27, 8
+; VI-NEXT:    v_or_b32_sdwa v3, v1, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v20, v24 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s7, s7, s8
+; VI-NEXT:    v_or_b32_sdwa v5, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
+; VI-NEXT:    v_or_b32_sdwa v2, v21, v18 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s6, s6, s7
+; VI-NEXT:    v_or_b32_sdwa v4, v2, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_mov_b32_e32 v0, s4
 ; VI-NEXT:    v_mov_b32_e32 v1, s5
 ; VI-NEXT:    v_mov_b32_e32 v2, s6
@@ -39034,82 +39040,82 @@ define inreg <16 x half> @bitcast_v32i8_to_v16f16_scalar(<32 x i8> inreg %a, i32
 ; VI-NEXT:    s_add_i32 s28, s28, 3
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    s_add_i32 s26, s26, 3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
 ; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v19
+; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_or_b32_sdwa v0, v25, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_and_b32 s4, s4, 0xffff
+; VI-NEXT:    s_add_i32 s22, s22, 3
+; VI-NEXT:    v_or_b32_e32 v0, s4, v0
+; VI-NEXT:    s_and_b32 s4, s22, 0xff
+; VI-NEXT:    s_lshl_b32 s5, s23, 8
+; VI-NEXT:    s_add_i32 s20, s20, 3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v12
+; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    s_and_b32 s5, s20, 0xff
+; VI-NEXT:    s_lshl_b32 s6, s21, 8
+; VI-NEXT:    v_or_b32_sdwa v6, v13, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
+; VI-NEXT:    s_or_b32 s5, s6, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_addk_i32 s5, 0x300
+; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
+; VI-NEXT:    s_lshl_b32 s4, s4, 16
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
+; VI-NEXT:    s_add_i32 s26, s26, 3
+; VI-NEXT:    s_or_b32 s4, s4, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v24, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_and_b32 s5, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s6, s27, 8
 ; VI-NEXT:    s_add_i32 s24, s24, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
 ; VI-NEXT:    s_or_b32 s5, s6, s5
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
-; VI-NEXT:    s_add_i32 s22, s22, 3
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
-; VI-NEXT:    s_or_b32 s6, s7, s6
-; VI-NEXT:    s_and_b32 s7, s22, 0xff
-; VI-NEXT:    s_lshl_b32 s8, s23, 8
-; VI-NEXT:    s_add_i32 s20, s20, 3
-; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
-; VI-NEXT:    s_or_b32 s7, s8, s7
-; VI-NEXT:    s_and_b32 s8, s20, 0xff
-; VI-NEXT:    s_lshl_b32 s9, s21, 8
 ; VI-NEXT:    s_add_i32 s18, s18, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v25, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s8, s9, s8
-; VI-NEXT:    s_and_b32 s9, s18, 0xff
-; VI-NEXT:    s_lshl_b32 s10, s19, 8
+; VI-NEXT:    v_or_b32_sdwa v4, v23, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
+; VI-NEXT:    s_or_b32 s6, s7, s6
+; VI-NEXT:    s_and_b32 s7, s18, 0xff
+; VI-NEXT:    s_lshl_b32 s8, s19, 8
 ; VI-NEXT:    s_add_i32 s16, s16, 3
-; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
-; VI-NEXT:    s_or_b32 s9, s10, s9
-; VI-NEXT:    s_and_b32 s10, s16, 0xff
-; VI-NEXT:    s_lshl_b32 s11, s17, 8
-; VI-NEXT:    v_or_b32_sdwa v4, v24, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
-; VI-NEXT:    s_or_b32 s10, s11, s10
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v14
-; VI-NEXT:    v_or_b32_sdwa v3, v23, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_or_b32 s7, s8, s7
+; VI-NEXT:    s_and_b32 s8, s16, 0xff
+; VI-NEXT:    s_lshl_b32 s9, s17, 8
+; VI-NEXT:    v_add_u32_e32 v9, vcc, 0x300, v3
+; VI-NEXT:    s_or_b32 s8, s9, s8
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v14
 ; VI-NEXT:    s_addk_i32 s6, 0x300
 ; VI-NEXT:    s_addk_i32 s8, 0x300
-; VI-NEXT:    s_addk_i32 s10, 0x300
-; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v15, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v12
-; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v19
-; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v4, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v2, v15, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_lshl_b32 s5, s5, 16
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
-; VI-NEXT:    s_lshl_b32 s9, s9, 16
-; VI-NEXT:    s_and_b32 s10, s10, 0xffff
 ; VI-NEXT:    s_and_b32 s8, s8, 0xffff
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v17, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 0x300, v1
-; VI-NEXT:    v_or_b32_sdwa v2, v13, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s9, s9, s10
+; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v5, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_or_b32_sdwa v1, v17, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 0x300, v2
 ; VI-NEXT:    s_or_b32 s7, s7, s8
 ; VI-NEXT:    s_or_b32 s5, s5, s6
-; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    s_add_i32 s9, s9, 0x3000000
+; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    s_add_i32 s7, s7, 0x3000000
+; VI-NEXT:    s_add_i32 s4, s4, 0x3000000
 ; VI-NEXT:    s_add_i32 s5, s5, 0x3000000
-; VI-NEXT:    v_or_b32_e32 v3, s4, v3
-; VI-NEXT:    v_or_b32_sdwa v4, v4, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v5, v5, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v2, v2, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v3
-; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v4
-; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v5
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v2
+; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x3000000, v0
-; VI-NEXT:    v_mov_b32_e32 v0, s9
-; VI-NEXT:    v_mov_b32_e32 v1, s7
+; VI-NEXT:    v_mov_b32_e32 v0, s7
+; VI-NEXT:    v_mov_b32_e32 v1, s4
 ; VI-NEXT:    v_mov_b32_e32 v2, s5
 ; VI-NEXT:  .LBB107_3: ; %end
 ; VI-NEXT:    s_setpc_b64 s[30:31]
@@ -42369,30 +42375,30 @@ define <16 x bfloat> @bitcast_v32i8_to_v16bf16(<32 x i8> %a, i32 %b) {
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_mov_b32_e32 v33, v2
-; VI-NEXT:    v_mov_b32_e32 v31, v0
+; VI-NEXT:    v_mov_b32_e32 v34, v0
 ; VI-NEXT:    buffer_load_dword v0, off, s[0:3], s32 offset:4
 ; VI-NEXT:    buffer_load_ushort v2, off, s[0:3], s32
 ; VI-NEXT:    v_mov_b32_e32 v32, v6
-; VI-NEXT:    v_mov_b32_e32 v34, v4
+; VI-NEXT:    v_mov_b32_e32 v31, v4
 ; VI-NEXT:    v_lshlrev_b16_e32 v35, 8, v1
 ; VI-NEXT:    v_lshlrev_b16_e32 v36, 8, v3
-; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v5
-; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v7
+; VI-NEXT:    v_lshlrev_b16_e32 v48, 8, v5
+; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v7
 ; VI-NEXT:    v_lshlrev_b16_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b16_e32 v11, 8, v11
-; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v13
-; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v15
-; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v17
-; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v19
-; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v21
-; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v23
-; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v25
-; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v27
-; VI-NEXT:    v_lshlrev_b16_e32 v29, 8, v29
+; VI-NEXT:    v_lshlrev_b16_e32 v38, 8, v13
+; VI-NEXT:    v_lshlrev_b16_e32 v37, 8, v15
+; VI-NEXT:    v_lshlrev_b16_e32 v13, 8, v17
+; VI-NEXT:    v_lshlrev_b16_e32 v15, 8, v19
+; VI-NEXT:    v_lshlrev_b16_e32 v17, 8, v21
+; VI-NEXT:    v_lshlrev_b16_e32 v19, 8, v23
+; VI-NEXT:    v_lshlrev_b16_e32 v21, 8, v25
+; VI-NEXT:    v_lshlrev_b16_e32 v23, 8, v27
+; VI-NEXT:    v_lshlrev_b16_e32 v25, 8, v29
 ; VI-NEXT:    s_waitcnt vmcnt(1)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v0
 ; VI-NEXT:    s_waitcnt vmcnt(0)
-; VI-NEXT:    v_lshlrev_b16_e32 v39, 8, v2
+; VI-NEXT:    v_lshlrev_b16_e32 v27, 8, v2
 ; VI-NEXT:    ; implicit-def: $vgpr0_vgpr1_vgpr2_vgpr3_vgpr4_vgpr5_vgpr6_vgpr7
 ; VI-NEXT:    s_and_saveexec_b64 s[4:5], vcc
 ; VI-NEXT:    s_xor_b64 s[4:5], exec, s[4:5]
@@ -42404,33 +42410,33 @@ define <16 x bfloat> @bitcast_v32i8_to_v16bf16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
 ; VI-NEXT:  .LBB110_3: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v31, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v34, v35 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v33, v36 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v34, v37 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v2, v32, v38 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v31, v48 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v2, v32, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v1, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v8, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v10, v11 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v2, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v12, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v14, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v12, v38 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v14, v37 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v3, v3, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v16, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v18, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v16, v13 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v18, v15 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v4, v4, v5 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v20, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v5, v20, v17 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v22, v19 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v5, v5, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v6, v24, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v26, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v24, v21 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v26, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v6, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v28, v29 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v8, v30, v39 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v28, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v8, v30, v27 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    v_or_b32_sdwa v7, v7, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    ; implicit-def: $vgpr31
-; VI-NEXT:    ; implicit-def: $vgpr33
 ; VI-NEXT:    ; implicit-def: $vgpr34
+; VI-NEXT:    ; implicit-def: $vgpr33
+; VI-NEXT:    ; implicit-def: $vgpr31
 ; VI-NEXT:    ; implicit-def: $vgpr32
 ; VI-NEXT:    ; implicit-def: $vgpr8
 ; VI-NEXT:    ; implicit-def: $vgpr10
@@ -42446,10 +42452,12 @@ define <16 x bfloat> @bitcast_v32i8_to_v16bf16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr30
 ; VI-NEXT:    ; implicit-def: $vgpr35
 ; VI-NEXT:    ; implicit-def: $vgpr36
-; VI-NEXT:    ; implicit-def: $vgpr37
-; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr48
+; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    ; implicit-def: $vgpr9
 ; VI-NEXT:    ; implicit-def: $vgpr11
+; VI-NEXT:    ; implicit-def: $vgpr38
+; VI-NEXT:    ; implicit-def: $vgpr37
 ; VI-NEXT:    ; implicit-def: $vgpr13
 ; VI-NEXT:    ; implicit-def: $vgpr15
 ; VI-NEXT:    ; implicit-def: $vgpr17
@@ -42458,67 +42466,65 @@ define <16 x bfloat> @bitcast_v32i8_to_v16bf16(<32 x i8> %a, i32 %b) {
 ; VI-NEXT:    ; implicit-def: $vgpr23
 ; VI-NEXT:    ; implicit-def: $vgpr25
 ; VI-NEXT:    ; implicit-def: $vgpr27
-; VI-NEXT:    ; implicit-def: $vgpr29
-; VI-NEXT:    ; implicit-def: $vgpr39
 ; VI-NEXT:    s_andn2_saveexec_b64 s[4:5], s[4:5]
 ; VI-NEXT:    s_cbranch_execz .LBB110_2
 ; VI-NEXT:  .LBB110_4: ; %cmp.true
+; VI-NEXT:    v_add_u16_e32 v0, 3, v31
+; VI-NEXT:    v_add_u16_e32 v1, 3, v32
+; VI-NEXT:    v_or_b32_sdwa v0, v48, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v1, v39, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_mov_b32_e32 v2, 0x300
+; VI-NEXT:    v_add_u16_e32 v3, 3, v12
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v0
+; VI-NEXT:    v_add_u16_sdwa v1, v1, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v3, v38, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_e32 v1, v0, v1
+; VI-NEXT:    v_add_u16_e32 v0, 0x300, v3
+; VI-NEXT:    v_add_u16_e32 v3, 3, v14
+; VI-NEXT:    v_or_b32_sdwa v3, v37, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v3, v3, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v3, v0, v3
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v30
-; VI-NEXT:    v_or_b32_sdwa v0, v39, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_mov_b32_e32 v1, 0x300
-; VI-NEXT:    v_add_u16_sdwa v7, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v28
-; VI-NEXT:    v_or_b32_sdwa v28, v29, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v27, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v6, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v24
-; VI-NEXT:    v_or_b32_sdwa v24, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v22
+; VI-NEXT:    v_add_u16_sdwa v7, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v28
+; VI-NEXT:    v_or_b32_sdwa v12, v25, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v26
 ; VI-NEXT:    v_or_b32_sdwa v0, v23, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v5, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v20
-; VI-NEXT:    v_or_b32_sdwa v20, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v18
+; VI-NEXT:    v_add_u16_sdwa v6, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v24
+; VI-NEXT:    v_or_b32_sdwa v14, v21, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v22
 ; VI-NEXT:    v_or_b32_sdwa v0, v19, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v4, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v16, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v14
+; VI-NEXT:    v_add_u16_sdwa v5, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v20
+; VI-NEXT:    v_or_b32_sdwa v17, v17, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v0, 3, v18
 ; VI-NEXT:    v_or_b32_sdwa v0, v15, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v3, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v12
-; VI-NEXT:    v_or_b32_sdwa v12, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v4, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v0, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v13, v13, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v10
 ; VI-NEXT:    v_or_b32_sdwa v0, v11, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v2, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_sdwa v10, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v8
 ; VI-NEXT:    v_or_b32_sdwa v8, v9, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_e32 v0, 3, v32
-; VI-NEXT:    v_or_b32_sdwa v0, v38, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u16_sdwa v9, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v0, 3, v34
-; VI-NEXT:    v_or_b32_sdwa v10, v37, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    v_add_u16_e32 v0, 3, v33
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v8
 ; VI-NEXT:    v_or_b32_sdwa v0, v36, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_e32 v2, v8, v2
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
-; VI-NEXT:    v_add_u16_sdwa v0, v0, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
-; VI-NEXT:    v_add_u16_e32 v1, 3, v31
-; VI-NEXT:    v_or_b32_e32 v3, v8, v3
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v35, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_sdwa v0, v0, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:DWORD
+; VI-NEXT:    v_add_u16_e32 v2, 3, v34
+; VI-NEXT:    v_or_b32_sdwa v2, v35, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v2
+; VI-NEXT:    v_or_b32_e32 v0, v2, v0
+; VI-NEXT:    v_add_u16_e32 v2, 0x300, v8
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v13
 ; VI-NEXT:    v_or_b32_e32 v4, v8, v4
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v20
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v1
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v17
 ; VI-NEXT:    v_or_b32_e32 v5, v8, v5
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v24
-; VI-NEXT:    v_or_b32_e32 v0, v1, v0
-; VI-NEXT:    v_add_u16_e32 v1, 0x300, v10
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v14
 ; VI-NEXT:    v_or_b32_e32 v6, v8, v6
-; VI-NEXT:    v_add_u16_e32 v8, 0x300, v28
-; VI-NEXT:    v_or_b32_e32 v1, v1, v9
+; VI-NEXT:    v_add_u16_e32 v8, 0x300, v12
+; VI-NEXT:    v_or_b32_e32 v2, v2, v10
 ; VI-NEXT:    v_or_b32_e32 v7, v8, v7
 ; VI-NEXT:    s_or_b64 exec, exec, s[4:5]
 ; VI-NEXT:    s_setpc_b64 s[30:31]
@@ -43303,15 +43309,15 @@ define inreg <16 x bfloat> @bitcast_v32i8_to_v16bf16_scalar(<32 x i8> inreg %a, 
 ; VI:       ; %bb.0:
 ; VI-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
 ; VI-NEXT:    v_cmp_ne_u32_e32 vcc, 0, v18
-; VI-NEXT:    v_mov_b32_e32 v21, v6
-; VI-NEXT:    v_mov_b32_e32 v20, v4
-; VI-NEXT:    v_mov_b32_e32 v22, v2
+; VI-NEXT:    v_mov_b32_e32 v20, v6
+; VI-NEXT:    v_mov_b32_e32 v22, v4
+; VI-NEXT:    v_mov_b32_e32 v21, v2
 ; VI-NEXT:    v_mov_b32_e32 v19, v0
 ; VI-NEXT:    s_and_b64 s[4:5], vcc, exec
-; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v1
-; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v3
-; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v5
-; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v7
+; VI-NEXT:    v_lshlrev_b32_e32 v25, 8, v1
+; VI-NEXT:    v_lshlrev_b32_e32 v18, 8, v3
+; VI-NEXT:    v_lshlrev_b32_e32 v23, 8, v5
+; VI-NEXT:    v_lshlrev_b32_e32 v24, 8, v7
 ; VI-NEXT:    v_lshlrev_b32_e32 v9, 8, v9
 ; VI-NEXT:    v_lshlrev_b32_e32 v11, 8, v11
 ; VI-NEXT:    v_lshlrev_b32_e32 v13, 8, v13
@@ -43319,24 +43325,12 @@ define inreg <16 x bfloat> @bitcast_v32i8_to_v16bf16_scalar(<32 x i8> inreg %a, 
 ; VI-NEXT:    v_lshlrev_b32_e32 v17, 8, v17
 ; VI-NEXT:    s_cbranch_scc0 .LBB111_4
 ; VI-NEXT:  ; %bb.1: ; %cmp.false
-; VI-NEXT:    v_or_b32_sdwa v0, v22, v23 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v20, v24 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v4, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s4, s4, s5
-; VI-NEXT:    v_or_b32_sdwa v2, v21, v25 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v3, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v19, v18 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_sdwa v5, v2, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
-; VI-NEXT:    v_or_b32_e32 v3, s4, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v19, v25 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_e32 v1, s4, v0
 ; VI-NEXT:    s_and_b32 s4, s16, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s17, 8
 ; VI-NEXT:    s_or_b32 s4, s4, s5
@@ -43355,15 +43349,30 @@ define inreg <16 x bfloat> @bitcast_v32i8_to_v16bf16_scalar(<32 x i8> inreg %a, 
 ; VI-NEXT:    s_and_b32 s5, s5, 0xffff
 ; VI-NEXT:    s_lshl_b32 s6, s6, 16
 ; VI-NEXT:    s_or_b32 s5, s5, s6
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    s_or_b32 s5, s5, s6
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
 ; VI-NEXT:    s_or_b32 s6, s6, s7
 ; VI-NEXT:    s_and_b32 s7, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s8, s27, 8
+; VI-NEXT:    v_or_b32_sdwa v3, v1, v0 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v20, v24 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v8, v9 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s7, s7, s8
+; VI-NEXT:    v_or_b32_sdwa v5, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v10, v11 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v12, v13 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
+; VI-NEXT:    v_or_b32_sdwa v2, v21, v18 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v4, v22, v23 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v6, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v0, v14, v15 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v1, v16, v17 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:BYTE_0 src1_sel:DWORD
 ; VI-NEXT:    s_or_b32 s6, s6, s7
+; VI-NEXT:    v_or_b32_sdwa v4, v2, v4 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
+; VI-NEXT:    v_or_b32_sdwa v7, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:WORD_0 src1_sel:DWORD
 ; VI-NEXT:    v_mov_b32_e32 v0, s4
 ; VI-NEXT:    v_mov_b32_e32 v1, s5
 ; VI-NEXT:    v_mov_b32_e32 v2, s6
@@ -43372,82 +43381,82 @@ define inreg <16 x bfloat> @bitcast_v32i8_to_v16bf16_scalar(<32 x i8> inreg %a, 
 ; VI-NEXT:    s_add_i32 s28, s28, 3
 ; VI-NEXT:    s_and_b32 s4, s28, 0xff
 ; VI-NEXT:    s_lshl_b32 s5, s29, 8
-; VI-NEXT:    s_add_i32 s26, s26, 3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
 ; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v19
+; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_or_b32_sdwa v0, v25, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_and_b32 s4, s4, 0xffff
+; VI-NEXT:    s_add_i32 s22, s22, 3
+; VI-NEXT:    v_or_b32_e32 v0, s4, v0
+; VI-NEXT:    s_and_b32 s4, s22, 0xff
+; VI-NEXT:    s_lshl_b32 s5, s23, 8
+; VI-NEXT:    s_add_i32 s20, s20, 3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v12
+; VI-NEXT:    s_or_b32 s4, s5, s4
+; VI-NEXT:    s_and_b32 s5, s20, 0xff
+; VI-NEXT:    s_lshl_b32 s6, s21, 8
+; VI-NEXT:    v_or_b32_sdwa v6, v13, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v10
+; VI-NEXT:    s_or_b32 s5, s6, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_addk_i32 s5, 0x300
+; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
+; VI-NEXT:    s_lshl_b32 s4, s4, 16
+; VI-NEXT:    s_and_b32 s5, s5, 0xffff
+; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
+; VI-NEXT:    s_add_i32 s26, s26, 3
+; VI-NEXT:    s_or_b32 s4, s4, s5
+; VI-NEXT:    v_or_b32_sdwa v3, v24, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_and_b32 s5, s26, 0xff
 ; VI-NEXT:    s_lshl_b32 s6, s27, 8
 ; VI-NEXT:    s_add_i32 s24, s24, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v11, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
 ; VI-NEXT:    s_or_b32 s5, s6, s5
 ; VI-NEXT:    s_and_b32 s6, s24, 0xff
 ; VI-NEXT:    s_lshl_b32 s7, s25, 8
-; VI-NEXT:    s_add_i32 s22, s22, 3
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v8
-; VI-NEXT:    s_or_b32 s6, s7, s6
-; VI-NEXT:    s_and_b32 s7, s22, 0xff
-; VI-NEXT:    s_lshl_b32 s8, s23, 8
-; VI-NEXT:    s_add_i32 s20, s20, 3
-; VI-NEXT:    v_or_b32_sdwa v5, v9, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
-; VI-NEXT:    s_or_b32 s7, s8, s7
-; VI-NEXT:    s_and_b32 s8, s20, 0xff
-; VI-NEXT:    s_lshl_b32 s9, s21, 8
 ; VI-NEXT:    s_add_i32 s18, s18, 3
-; VI-NEXT:    v_or_b32_sdwa v3, v25, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s8, s9, s8
-; VI-NEXT:    s_and_b32 s9, s18, 0xff
-; VI-NEXT:    s_lshl_b32 s10, s19, 8
+; VI-NEXT:    v_or_b32_sdwa v4, v23, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v21
+; VI-NEXT:    s_or_b32 s6, s7, s6
+; VI-NEXT:    s_and_b32 s7, s18, 0xff
+; VI-NEXT:    s_lshl_b32 s8, s19, 8
 ; VI-NEXT:    s_add_i32 s16, s16, 3
-; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v20
-; VI-NEXT:    s_or_b32 s9, s10, s9
-; VI-NEXT:    s_and_b32 s10, s16, 0xff
-; VI-NEXT:    s_lshl_b32 s11, s17, 8
-; VI-NEXT:    v_or_b32_sdwa v4, v24, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v22
-; VI-NEXT:    s_or_b32 s10, s11, s10
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v14
-; VI-NEXT:    v_or_b32_sdwa v3, v23, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    s_or_b32 s7, s8, s7
+; VI-NEXT:    s_and_b32 s8, s16, 0xff
+; VI-NEXT:    s_lshl_b32 s9, s17, 8
+; VI-NEXT:    v_add_u32_e32 v9, vcc, 0x300, v3
+; VI-NEXT:    s_or_b32 s8, s9, s8
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v14
 ; VI-NEXT:    s_addk_i32 s6, 0x300
 ; VI-NEXT:    s_addk_i32 s8, 0x300
-; VI-NEXT:    s_addk_i32 s10, 0x300
-; VI-NEXT:    v_add_u32_e32 v0, vcc, 3, v16
-; VI-NEXT:    v_or_b32_sdwa v1, v15, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v2, vcc, 3, v12
-; VI-NEXT:    v_add_u32_e32 v8, vcc, 0x300, v3
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 3, v19
-; VI-NEXT:    s_addk_i32 s4, 0x300
+; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v4, v9 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_add_u32_e32 v1, vcc, 3, v16
+; VI-NEXT:    v_or_b32_sdwa v2, v15, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
 ; VI-NEXT:    s_lshl_b32 s5, s5, 16
 ; VI-NEXT:    s_lshl_b32 s7, s7, 16
-; VI-NEXT:    s_lshl_b32 s9, s9, 16
-; VI-NEXT:    s_and_b32 s10, s10, 0xffff
 ; VI-NEXT:    s_and_b32 s8, s8, 0xffff
 ; VI-NEXT:    s_and_b32 s6, s6, 0xffff
-; VI-NEXT:    v_or_b32_sdwa v0, v17, v0 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_add_u32_e32 v1, vcc, 0x300, v1
-; VI-NEXT:    v_or_b32_sdwa v2, v13, v2 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    v_or_b32_sdwa v3, v18, v3 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
-; VI-NEXT:    s_or_b32 s9, s9, s10
+; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v5, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
+; VI-NEXT:    v_or_b32_sdwa v1, v17, v1 dst_sel:WORD_1 dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:BYTE_0
+; VI-NEXT:    v_add_u32_e32 v2, vcc, 0x300, v2
 ; VI-NEXT:    s_or_b32 s7, s7, s8
 ; VI-NEXT:    s_or_b32 s5, s5, s6
-; VI-NEXT:    s_and_b32 s4, s4, 0xffff
-; VI-NEXT:    s_add_i32 s9, s9, 0x3000000
+; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v6, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    s_add_i32 s7, s7, 0x3000000
+; VI-NEXT:    s_add_i32 s4, s4, 0x3000000
 ; VI-NEXT:    s_add_i32 s5, s5, 0x3000000
-; VI-NEXT:    v_or_b32_e32 v3, s4, v3
-; VI-NEXT:    v_or_b32_sdwa v4, v4, v8 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v5, v5, v7 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v2, v2, v6 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_or_b32_sdwa v0, v0, v1 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
-; VI-NEXT:    v_add_u32_e32 v3, vcc, 0x3000000, v3
-; VI-NEXT:    v_add_u32_e32 v4, vcc, 0x3000000, v4
-; VI-NEXT:    v_add_u32_e32 v5, vcc, 0x3000000, v5
-; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v2
+; VI-NEXT:    v_add_u32_e32 v6, vcc, 0x3000000, v0
+; VI-NEXT:    v_or_b32_sdwa v0, v1, v2 dst_sel:DWORD dst_unused:UNUSED_PAD src0_sel:DWORD src1_sel:WORD_0
 ; VI-NEXT:    v_add_u32_e32 v7, vcc, 0x3000000, v0
-; VI-NEXT:    v_mov_b32_e32 v0, s9
-; VI-NEXT:    v_mov_b32_e32 v1, s7
+; VI-NEXT:    v_mov_b32_e32 v0, s7
+; VI-NEXT:    v_mov_b32_e32 v1, s4
 ; VI-NEXT:    v_mov_b32_e32 v2, s5
 ; VI-NEXT:  .LBB111_3: ; %end
 ; VI-NEXT:    s_setpc_b64 s[30:31]

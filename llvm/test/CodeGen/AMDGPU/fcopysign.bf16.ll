@@ -7874,9 +7874,9 @@ define <4 x bfloat> @v_copysign_out_v4bf16_mag_v4bf16_sign_v4f64(<4 x bfloat> %m
 ; GCN-NEXT:    v_or_b32_e32 v2, v2, v7
 ; GCN-NEXT:    v_or_b32_e32 v0, v0, v5
 ; GCN-NEXT:    v_lshlrev_b32_e32 v1, 16, v1
-; GCN-NEXT:    v_lshlrev_b32_e32 v3, 16, v3
 ; GCN-NEXT:    v_lshlrev_b32_e32 v0, 16, v0
 ; GCN-NEXT:    v_lshlrev_b32_e32 v2, 16, v2
+; GCN-NEXT:    v_lshlrev_b32_e32 v3, 16, v3
 ; GCN-NEXT:    s_setpc_b64 s[30:31]
 ;
 ; GFX7-LABEL: v_copysign_out_v4bf16_mag_v4bf16_sign_v4f64:
@@ -7903,9 +7903,9 @@ define <4 x bfloat> @v_copysign_out_v4bf16_mag_v4bf16_sign_v4f64(<4 x bfloat> %m
 ; GFX7-NEXT:    v_bfe_u32 v0, v0, 16, 15
 ; GFX7-NEXT:    v_or_b32_e32 v0, v0, v4
 ; GFX7-NEXT:    v_lshlrev_b32_e32 v1, 16, v1
-; GFX7-NEXT:    v_lshlrev_b32_e32 v3, 16, v3
 ; GFX7-NEXT:    v_lshlrev_b32_e32 v0, 16, v0
 ; GFX7-NEXT:    v_lshlrev_b32_e32 v2, 16, v2
+; GFX7-NEXT:    v_lshlrev_b32_e32 v3, 16, v3
 ; GFX7-NEXT:    s_setpc_b64 s[30:31]
 ;
 ; GFX8-LABEL: v_copysign_out_v4bf16_mag_v4bf16_sign_v4f64:

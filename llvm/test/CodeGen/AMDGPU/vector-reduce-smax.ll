@@ -1730,14 +1730,12 @@ define i16 @test_vector_reduce_smax_v3i16(<3 x i16> %v) {
 ; GFX7-SDAG-LABEL: test_vector_reduce_smax_v3i16:
 ; GFX7-SDAG:       ; %bb.0: ; %entry
 ; GFX7-SDAG-NEXT:    s_waitcnt vmcnt(0) expcnt(0) lgkmcnt(0)
-; GFX7-SDAG-NEXT:    v_and_b32_e32 v2, 0xffff, v2
-; GFX7-SDAG-NEXT:    v_or_b32_e32 v2, 0x80000000, v2
-; GFX7-SDAG-NEXT:    v_ashrrev_i32_e32 v3, 16, v2
 ; GFX7-SDAG-NEXT:    v_bfe_i32 v2, v2, 0, 16
 ; GFX7-SDAG-NEXT:    v_bfe_i32 v0, v0, 0, 16
 ; GFX7-SDAG-NEXT:    v_max_i32_e32 v0, v0, v2
 ; GFX7-SDAG-NEXT:    v_bfe_i32 v1, v1, 0, 16
-; GFX7-SDAG-NEXT:    v_max3_i32 v0, v0, v1, v3
+; GFX7-SDAG-NEXT:    s_movk_i32 s4, 0x8000
+; GFX7-SDAG-NEXT:    v_max3_i32 v0, v0, v1, s4
 ; GFX7-SDAG-NEXT:    s_setpc_b64 s[30:31]
 ;
 ; GFX7-GISEL-LABEL: test_vector_reduce_smax_v3i16:

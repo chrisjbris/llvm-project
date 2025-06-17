@@ -2407,11 +2407,11 @@ define <3 x i16> @v_ctlz_zero_undef_v3i16(<3 x i16> %val) {
 ; SI-NEXT:    v_lshlrev_b32_e32 v2, 16, v2
 ; SI-NEXT:    v_ffbh_u32_e32 v1, v1
 ; SI-NEXT:    v_ffbh_u32_e32 v0, v0
-; SI-NEXT:    v_ffbh_u32_e32 v3, v2
+; SI-NEXT:    v_ffbh_u32_e32 v2, v2
 ; SI-NEXT:    v_lshlrev_b32_e32 v1, 16, v1
 ; SI-NEXT:    v_or_b32_e32 v0, v0, v1
-; SI-NEXT:    v_or_b32_e32 v2, 0x200000, v3
-; SI-NEXT:    v_alignbit_b32 v1, v3, v0, 16
+; SI-NEXT:    v_or_b32_e32 v2, 0x200000, v2
+; SI-NEXT:    v_alignbit_b32 v1, v2, v0, 16
 ; SI-NEXT:    s_setpc_b64 s[30:31]
 ;
 ; VI-LABEL: v_ctlz_zero_undef_v3i16:
